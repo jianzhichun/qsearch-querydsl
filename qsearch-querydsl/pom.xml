@@ -90,6 +90,20 @@
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.coveralls.mojo</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<aggregate>true</aggregate>
+					<instrumentation>
+						<excludes>
+							<excludes>**/*.class</excludes>
+						</excludes>
+					</instrumentation>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
