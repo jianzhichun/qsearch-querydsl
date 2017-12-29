@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.regex.Matcher;
@@ -71,36 +70,35 @@ public class QSearchPredicator {
 		private String key;
 		private String operation;
 		private String value;
-		@Getter(lazy=true) private final BooleanExpression booleanExpression = booleanExpression().get();
+		@Getter(lazy=true) private final BooleanExpression booleanExpression = booleanExpression();
 		
 		public boolean valid(){
 			return Objects.nonNull(getBooleanExpression());
 		}
 		
-		private Optional<BooleanExpression> booleanExpression() {
-			return Optional.ofNullable(StreamSupport.stream(Splitter.on(".").split(getKey()).spliterator(), false)
-				.reduce(clazz, (_clazz, field) -> {
+		private <SunOfNumber extends Number & Comparable<?>, SunOfDate extends Date> BooleanExpression booleanExpression() {
+			Class fieldClass = StreamSupport.stream(Splitter.on(".").split(getKey()).spliterator(), false)
+				.<Class>reduce(clazz, (_clazz, field) -> {
 					try {
 						return _clazz.getDeclaredField(field).getType();
 					} catch (NullPointerException | NoSuchFieldException | SecurityException e) {
 						return null;
 					}
-				}, (c1, c2) -> null))
-				.map(_clazz -> _clazz.isPrimitive() ? Primitives.wrap(_clazz) : _clazz)
-				.<BooleanExpression>map(_clazz -> {
-					if(ClassUtils.isAssignable(Number.class, _clazz))
-						return fromNumber(_clazz);
-					else if(ClassUtils.isAssignable(Date.class, _clazz))
-						return fromDate(_clazz);
-					else if(ClassUtils.isAssignable(ZonedDateTime.class, _clazz))
-						return fromZonedDateTime(_clazz);
-					else if(ClassUtils.isAssignable(LocalDateTime.class, _clazz))
-						return fromLocalDateTime(_clazz);
-					else if(ClassUtils.isAssignable(Boolean.class, _clazz))
-						return fromBoolean(_clazz);
-					else 
-						return fromString(_clazz);
-				});
+				}, (c1, c2) -> null);
+			if(Objects.isNull(fieldClass)) return null;
+			fieldClass = fieldClass.isPrimitive() ? Primitives.wrap(fieldClass) : fieldClass;
+			if(ClassUtils.isAssignable(Number.class, fieldClass))
+				return fromNumber((Class<SunOfNumber>)fieldClass);
+			else if(ClassUtils.isAssignable(Date.class, fieldClass))
+				return fromDate((Class<SunOfDate>)fieldClass);
+			else if(ClassUtils.isAssignable(ZonedDateTime.class, fieldClass))
+				return fromZonedDateTime((Class<ZonedDateTime>)fieldClass);
+			else if(ClassUtils.isAssignable(LocalDateTime.class, fieldClass))
+				return fromLocalDateTime((Class<LocalDateTime>)fieldClass);
+			else if(ClassUtils.isAssignable(Boolean.class, fieldClass))
+				return fromBoolean((Class<Boolean>)fieldClass);
+			else 
+				return fromString(fieldClass);
 		}
 		
 		private BooleanExpression fromString(Class _clazz) {
@@ -151,7 +149,7 @@ public class QSearchPredicator {
 			}
 		}
 
-		private <A extends Date> BooleanExpression fromDate(Class<A> _clazz) {
+		private <SunOfDate extends Date> BooleanExpression fromDate(Class<SunOfDate> _clazz) {
 			DatePath<Date> path = getPathBuilder().getDate(getKey(), _clazz);
 			Date value = Date.from(ZonedDateTime.parse(getValue(), dateTimeFormatter).toInstant());
 			switch (getOperation()) {
@@ -165,9 +163,9 @@ public class QSearchPredicator {
 			}
 		}
 
-		private <A extends Number & Comparable<?>> BooleanExpression fromNumber(Class<A> _clazz) {
-			NumberPath<A> path = getPathBuilder().getNumber(getKey(), _clazz);
-			A value = NumberUtils.parseNumber(getValue(), _clazz);
+		private <SunOfNumber extends Number & Comparable<?>> BooleanExpression fromNumber(Class<SunOfNumber> _clazz) {
+			NumberPath<SunOfNumber> path = getPathBuilder().getNumber(getKey(), _clazz);
+			SunOfNumber value = NumberUtils.parseNumber(getValue(), _clazz);
 			switch (getOperation()) {
 			case "=": return path.eq(value); 
 			case ">": return path.gt(value); 
