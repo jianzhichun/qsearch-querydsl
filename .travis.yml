@@ -7,7 +7,7 @@ install:
   - mvn -f qsearch-querydsl/pom.xml clean install -DskipTests=true
 
 after_success:
-  - mvn coveralls:report
+  - mvn clean cobertura:cobertura coveralls:report
 
 script:
   - echo "build finishing"

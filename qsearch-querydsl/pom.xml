@@ -89,6 +89,9 @@
 			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
+				<configuration>
+					<repoToken>MmfLidOkn1lu0UiOJF7xVSlN2hOQoVDy1</repoToken>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.coveralls.mojo</groupId>
