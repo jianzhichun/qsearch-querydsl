@@ -4,11 +4,8 @@ jdk:
   - oraclejdk8
 
 install:
-  - qsearch-querydsl/mvnw -f qsearch-querydsl/pom.xml clean install -DskipTests=true
+  - mvn -f qsearch-querydsl/pom.xml clean install -DskipTests=true
 
-before_install:
-  - chmod +x qsearch-querydsl/mvnw
-  
 cache:
   directories:
     - $HOME/.m2
