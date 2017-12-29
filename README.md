@@ -1,7 +1,9 @@
-##  QSEARCH-QUERYDSL [![Build Status](https://travis-ci.org/jianzhichun/qsearch-querydsl.svg?branch=master)](https://travis-ci.org/jianzhichun/qsearch-querydsl) [![Coverage Status](https://coveralls.io/repos/github/jianzhichun/qsearch-querydsl/badge.svg?branch=master)](https://coveralls.io/github/jianzhichun/qsearch-querydsl?branch=master)
+##  QSEARCH-QUERYDSL 
+
+[![Build Status](https://travis-ci.org/jianzhichun/qsearch-querydsl.svg?branch=master)](https://travis-ci.org/jianzhichun/qsearch-querydsl) [![Coverage Status](https://coveralls.io/repos/github/jianzhichun/qsearch-querydsl/badge.svg?branch=master)](https://coveralls.io/github/jianzhichun/qsearch-querydsl?branch=master)
 
 
-querydsl extension for searching pojo via custom query like lucene query. (e.g. b.name=hello AND date<2017-12-29T08:29:55.907Z)
+A extension of Querydsl for searching pojo via custom query like lucene query. *e.g.* b.name=hello AND date<2017-12-29T08:29:55.907Z
 
 基于querydesl和spring-data的自定义搜索， 快速搭建搜索语法
 
