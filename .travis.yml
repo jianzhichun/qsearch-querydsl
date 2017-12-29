@@ -8,7 +8,10 @@ install:
 
 after_success:
   - mvn coveralls:report
-  
+
+script:
+  - echo "build finishing"
+
 cache:
   directories:
     - $HOME/.m2
