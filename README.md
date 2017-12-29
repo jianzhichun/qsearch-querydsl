@@ -78,9 +78,10 @@ private final static Pattern PATTERN = Pattern
 * *logicalOperator*: OR means or query, AND | , means and query
 * *key*: Name of pojo's filed, supported dot path 
 * *operation*: 
-*   * ~: containsIgnoreCase in String query
-    * =: equals
-    * < | > | <= | >= | !=: compare
+    * **~**: containsIgnoreCase in String query
+    * **=**: equals
+    * **< | > | <= | >= | !=**: compare
+* *value*:  Values to be querying
 
 e.g. [http://localhost:8080/api/A?q=b.name~tri, date>=2017-12-29T08:29:55.907Z]()
 
