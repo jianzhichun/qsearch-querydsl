@@ -6,6 +6,9 @@ jdk:
 install:
   - mvn -f qsearch-querydsl/pom.xml clean install -DskipTests=true
 
+after_success:
+  - mvn coveralls:report
+  
 cache:
   directories:
     - $HOME/.m2
