@@ -1,0 +1,30 @@
+spring:
+  application.name: "@project.name@"
+  
+  datasource:
+    url: jdbc:h2:mem:test
+    driver-class-name: org.h2.Driver
+  
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate.ddl-auto: create-drop
+    properties.hibernate.format_sql: false
+    
+  h2.console:
+    enabled: true
+    path: /h2
+    console.settings.web-allow-others: true
+  
+  jackson.serialization.write_dates_as_timestamps: false
+    
+auto.swagger2: 
+  basePackage: io.github.jianzhichun.querydsl.jpa.qsearch.sample
+  apiInfo:
+    version: 2.0
+    title: nothing
+    description: nothing
+    contact: 
+      name: nothing
+      url: nothing
+      email: zzchun12826@gmail.com
