@@ -2,7 +2,7 @@ language: java
 jdk:
   - oraclejdk8
 install:
-  - mvn clean install -DskipTests=true
+  - mvn -f qsearch-querydsl/pom.xml clean install -DskipTests=true
 after_success:
   - mvn coveralls:report
 cache:
