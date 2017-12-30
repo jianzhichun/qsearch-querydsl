@@ -1,7 +1,11 @@
 ##  QSEARCH-QUERYDSL 
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.jianzhichun/qsearch-querydsl.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.jianzhichun%22%20AND%20a%3A%22qsearch-querydsl%22)
+[![GitHub issues](https://img.shields.io/github/issues/jianzhichun/qsearch-querydsl.svg)](https://github.com/jianzhichun/qsearch-querydsl/issues)
 [![Build Status](https://travis-ci.org/jianzhichun/qsearch-querydsl.svg?branch=master)](https://travis-ci.org/jianzhichun/qsearch-querydsl) [![Coverage Status](https://coveralls.io/repos/github/jianzhichun/qsearch-querydsl/badge.svg?branch=master)](https://coveralls.io/github/jianzhichun/qsearch-querydsl?branch=master)
-
+[![GitHub forks](https://img.shields.io/github/forks/jianzhichun/qsearch-querydsl.svg)](https://github.com/jianzhichun/qsearch-querydsl/network)
+[![GitHub stars](https://img.shields.io/github/stars/jianzhichun/qsearch-querydsl.svg)](https://github.com/jianzhichun/qsearch-querydsl/stargazers)
+[![GitHub license](https://img.shields.io/github/license/jianzhichun/qsearch-querydsl.svg)](https://github.com/jianzhichun/qsearch-querydsl/blob/master/LICENSE)
 
 A extension of Querydsl for searching pojo via custom query like lucene query. *e.g.* b.name=hello AND date<2017-12-29T08:29:55.907Z
 
